@@ -50,7 +50,7 @@ spec:
             secretKeyRef:
               name: mongo-secret
               key: MONGO_USERNAME
-        image: mrmagik/node-kubernetes
+        image: lvlds/node-kubernetes:latest
         name: nodejs
         ports:
         - containerPort: 8080
