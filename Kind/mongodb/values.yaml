@@ -1,0 +1,10 @@
+architecture: "replicaset"
+replicaCount: 5
+persistence:
+  size: 1Gi
+auth:
+  database: sharkinfo
+  username: username
+  password: password
+service:
+  nameOverride: db
