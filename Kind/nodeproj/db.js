@@ -14,7 +14,11 @@ const options = {
   connectTimeoutMS: 10000,
 };
 
-const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`;
+const replicas = Array.from(Array(5).keys())
+                      .map(index => `mongodb-${index}.db.default.svc.cluster.local`)
+                      .map(hostname => `${hostname}:${MONGO_PORT}`)
+                      .join(",");
+const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${replicas}/${MONGO_DB}`;
 
 mongoose.connect(url, options).then( function() {
   console.log('MongoDB is connected');
