@@ -9,14 +9,8 @@ const {
 } = process.env;
 
 const options = {
-  db: {
-    native_parser: true,
-    readPreference: 'primaryPreferred'
-  },
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  reconnectTries: Number.MAX_VALUE,
-  reconnectInterval: 500,
   connectTimeoutMS: 10000,
 };
 
