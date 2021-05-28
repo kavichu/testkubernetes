@@ -5,7 +5,7 @@ data:
   MONGO_STATEFULSET_NAME: mongodb
   MONGO_SERVICE_NAME: db
   MONGO_NAMESPACE: default
-  MONGO_REPLICAS_COUNT: 5
+  MONGO_REPLICAS_COUNT: "5"
 kind: ConfigMap
 metadata:
   creationTimestamp: null
