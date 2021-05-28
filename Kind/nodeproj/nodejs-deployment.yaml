@@ -33,8 +33,26 @@ spec:
             configMapKeyRef:
               key: MONGO_DB
               name: nodejs-env
-        - name: MONGO_HOSTNAME
-          value: db
+        - name: MONGO_STATEFULSET_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: MONGO_STATEFULSET_NAME
+              name: nodejs-env
+        - name: MONGO_SERVICE_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: MONGO_SERVICE_NAME
+              name: nodejs-env
+        - name: MONGO_NAMESPACE
+          valueFrom:
+            configMapKeyRef:
+              key: MONGO_NAMESPACE
+              name: nodejs-env
+        - name: MONGO_REPLICAS_COUNT
+          valueFrom:
+            configMapKeyRef:
+              key: MONGO_REPLICAS_COUNT
+              name: nodejs-env
         - name: MONGO_PASSWORD
           valueFrom:
             secretKeyRef:

@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const {
   MONGO_USERNAME,
   MONGO_PASSWORD,
-  MONGO_HOSTNAME,
   MONGO_PORT,
-  MONGO_DB
+  MONGO_DB,
+  MONGO_STATEFULSET_NAME,
+  MONGO_SERVICE_NAME,
+  MONGO_NAMESPACE,
+  MONGO_REPLICAS_COUNT = 1
 } = process.env;
 
 const options = {
@@ -14,10 +17,10 @@ const options = {
   connectTimeoutMS: 10000,
 };
 
-const replicas = Array.from(Array(5).keys())
-                      .map(index => `mongodb-${index}.db.default.svc.cluster.local`)
+const replicas = Array.from(Array(parseInt(MONGO_REPLICAS_COUNT)).keys())
+                      .map(index => `${MONGO_STATEFULSET_NAME}-${index}.${MONGO_SERVICE_NAME}.${MONGO_NAMESPACE}.svc.cluster.local`)
                       .map(hostname => `${hostname}:${MONGO_PORT}`)
-                      .join(",");
+                      .join(',');
 const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${replicas}/${MONGO_DB}`;
 
 mongoose.connect(url, options).then( function() {
